@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="images/Blue%20umbrella.png"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customize Umbrella</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body id="body">
+    <div class="view all-center" id='view'>
+        <img src="images/Blue umbrella.png" id="umbrella" class="umbrella" alt="umbrella">
+        <img src="images/loader_icon.svg" id="loader" class="loader hide" alt="loader">
+        <img src="#" id="logo" class="logo hide" alt="logo">
+    </div>
+    <div class="controller all-center">
+        <div class="title">
+            Custom Umbrella
+        </div>
+        <div class="color-button">
+            <button id='blue-button'></button>
+            <button id='pink-button'></button>
+            <button id='yellow-button'></button>
+        </div>
+        <div class="instructions">
+            <h5>Customize your umbrella</h5>
+            <h6>Upload a logo for an instant preview.</h6>
+            <p>.png and .jpg files only. Max file size is 5MB</p>
+        </div>
+        <div class="upload-button">
+
+            <button id="uploader">
+                <img src="images/upload_icon.svg" class="uploader-icon" alt="'upload" />
+                <label id="file-name">UPLOAD LOGO</label>
+            </button>
+            <input type="file"
+                   id="logo-file"
+                   accept="image/png, image/jpg"
+                    style="display: none"
+            >
+
+            <button id="delete-button" class="hide">X</button>
+        </div>
+    </div>
+</body>
+<script src="./index.js"></script>
+</html>

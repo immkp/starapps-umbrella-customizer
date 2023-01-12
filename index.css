@@ -1,0 +1,171 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+.hide {
+    display: none;
+}
+.all-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    font-family: 'Poppins', sans-serif;
+    background: rgba(0, 0, 255, 0.123);
+}
+
+
+.view {
+    width: 60%;
+    height: 100%;
+}
+
+.umbrella {
+    width: 70%;
+    height: 80%;
+    -webkit-transition: 2s color;
+    -moz-transition: 2s color;
+    transition: 2s color;
+}
+
+.loader {
+    width: 30%;
+    height: 30%;
+    opacity: 0.5;
+}
+
+@keyframes loader-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .loader {
+        animation: loader-spin infinite 3s linear;
+    }
+}
+.logo {
+    position: absolute;
+    width: 64px;
+    top: 82%;
+}
+
+
+.controller {
+    width: 40%;
+    height: 80%;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 35px;
+}
+
+button {
+    outline: thin;
+    background: none;
+    padding: 12px;
+    border: 1px solid rgb(195, 195, 195);
+    border-radius: 12px;
+    cursor: pointer;
+    color: white;
+}
+
+.color-button {
+    width: 20%;
+    display: flex;
+    justify-content: space-around;
+    margin: 10px 0 25px 10px;
+}
+
+#blue-button {
+    color: blue;
+    background: blue;
+}
+
+#pink-button {
+    color: pink;
+    background: pink;
+}
+
+#yellow-button {
+    color: yellow;
+    background: yellow;
+}
+
+
+
+.instructions {
+    display: flex;
+    flex-direction: column;
+}
+
+.instructions h5 {
+    font-size: 16px;
+    margin-bottom: 3px;
+}
+
+.instructions h6 {
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.instructions p {
+    display: flex;
+    font-size: 11px;
+    margin: 10px;
+    margin-left: 0;
+}
+
+
+
+.upload-button {
+    display: flex;
+    width: 60%;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 3px;
+    background: #2b91e4;
+    color: white;
+    font-weight: 800;
+    
+}
+
+#uploader {
+    width: 90%;
+    border: none;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    cursor:pointer;
+}
+#file-name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    overflow: hidden;
+    font-weight: bold;
+}
+.uploader-icon {
+    filter: invert();
+}
+#delete-button {
+    width: 10%;
+    border: none;
+    border-left: 1px solid white;
+    margin-right: 10px;
+    font-size: 19px;
+    font-family: cursive;
+    height: 100%;
+}
