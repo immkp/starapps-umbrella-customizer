@@ -1,3 +1,4 @@
+//all the html elements
 const pinkButton = document.getElementById('pink-button')
 const blueButton = document.getElementById('blue-button')
 const yellowButton = document.getElementById('yellow-button')
@@ -10,8 +11,11 @@ const body = document.getElementById('body')
 const fileNameLabel = document.getElementById('file-name')
 const favIcon = document.querySelector("link[rel*='icon']")
 
+//By default the color will be blue
 let currentUmbrellaColor = 'blue'
 
+
+// used to provide loading effect when umbrella color is changed or logo is applied
 const showLoader = () => {
   if (logoImage.getAttribute('src') !== '#') logoImage.classList.add('hide')
   loader.classList.remove('hide')
@@ -23,12 +27,17 @@ const showLoader = () => {
   }, 100)
 }
 
+
+//changes the visible umbrella to different colors
 const fetchData = async () => {
+  //fetching data from data.json
   await fetch('./data.json')
     .then((response) => response.json())
     .then((data) => {
+      //iterating through the data
       data.map((details) => {
         let button = eval(details['button'])
+        //adding the event listener to the color buttons
         button.addEventListener('click', () => {
           if (currentUmbrellaColor === details['color']) return
           currentUmbrellaColor = details['color']
@@ -36,9 +45,11 @@ const fetchData = async () => {
           umbrella.classList.add('hide')
           showLoader()
 
+          //changing the umbrella and icon 
           umbrella.setAttribute('src', details['imageLink'])
           favIcon.setAttribute('href', details['imageLink'])
 
+          //changing the background color
           body.style.backgroundColor = details['backgroundColor']
         })
       })
@@ -56,6 +67,8 @@ const showDeleteButton = (file) => {
   fileNameLabel.innerText = file.split('\\')[2].toUpperCase()
 }
 
+
+//when delete the logo the button should be set to Upload logo
 deleteButton.addEventListener('click', () => {
   logoImage.setAttribute('src', '#')
   logoImage.classList.add('hide')
