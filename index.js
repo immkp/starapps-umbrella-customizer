@@ -10,14 +10,8 @@ const body = document.getElementById('body')
 const fileNameLabel = document.getElementById('file-name')
 const favIcon = document.querySelector("link[rel*='icon']")
 
-const BLUE = 'blue'
-const PINK = 'pink'
-const YELLOW = 'yellow'
+let currentUmbrellaColor = 'blue'
 
-// store the current umbrella color to avoid the loading of same image
-let currentUmbrellaColor = BLUE
-
-// used to provide loading effect when umbrella color is changed or logo is applied
 const showLoader = () => {
   if (logoImage.getAttribute('src') !== '#') logoImage.classList.add('hide')
   loader.classList.remove('hide')
@@ -26,47 +20,34 @@ const showLoader = () => {
     umbrella.classList.remove('hide')
     if (logoImage.getAttribute('src') !== '#')
       logoImage.classList.remove('hide')
-  }, 2000)
+  }, 100)
 }
 
-// changes the visible umbrella to pink colored umbrella
-pinkButton.addEventListener('click', () => {
-  if (currentUmbrellaColor === PINK) return
-  currentUmbrellaColor = PINK
+const fetchData = async () => {
+  await fetch('./data.json')
+    .then((response) => response.json())
+    .then((data) => {
+      data.map((details) => {
+        let button = eval(details['button'])
+        button.addEventListener('click', () => {
+          if (currentUmbrellaColor === details['color']) return
+          currentUmbrellaColor = details['color']
 
-  umbrella.classList.add('hide')
-  showLoader()
-  umbrella.setAttribute('src', 'images/Pink%20umbrella.png')
-  favIcon.setAttribute('href', 'images/Pink%20umbrella.png')
+          umbrella.classList.add('hide')
+          showLoader()
 
-  body.style.backgroundColor = 'rgba(225, 0, 255, 0.141)'
-})
+          umbrella.setAttribute('src', details['imageLink'])
+          favIcon.setAttribute('href', details['imageLink'])
 
-// changes the visible umbrella to yellow colored umbrella
-blueButton.addEventListener('click', () => {
-  if (currentUmbrellaColor === BLUE) return
-  currentUmbrellaColor = BLUE
+          body.style.backgroundColor = details['backgroundColor']
+        })
+      })
+    })
+    .catch((error) => console.error(error))
+}
 
-  umbrella.classList.add('hide')
-  showLoader()
-  umbrella.setAttribute('src', 'images/Blue%20umbrella.png')
-  favIcon.setAttribute('href', 'images/Blue%20umbrella.png')
+fetchData()
 
-  body.style.backgroundColor = 'rgba(0, 0, 255, 0.123)'
-})
-
-// changes the visible umbrella to yellow colored umbrella
-yellowButton.addEventListener('click', () => {
-  if (currentUmbrellaColor === YELLOW) return
-  currentUmbrellaColor = YELLOW
-
-  umbrella.classList.add('hide')
-  showLoader()
-  umbrella.setAttribute('src', 'images/Yellow%20umbrella.png')
-  favIcon.setAttribute('href', 'images/Yellow%20umbrella.png')
-
-  body.style.backgroundColor = '#ffffe3'
-})
 
 // this function is used to show delete button if logo is applied
 const showDeleteButton = (file) => {
@@ -85,7 +66,6 @@ deleteButton.addEventListener('click', () => {
 
 // when logo file is uploaded, this function handles the visibility of every element related to the file
 const uploadHandler = (event) => {
-  console.log('Event triggered')
   const file = event.target.files[0]
   if (!file) {
     console.log('Choose one file!')
@@ -96,7 +76,6 @@ const uploadHandler = (event) => {
     console.error('File size Exceed the limit !!', `File Size: ${fileSize}`)
     return
   }
-  //creating a fake url for logo
   const url = URL.createObjectURL(file)
   umbrella.classList.add('hide')
 
@@ -109,8 +88,6 @@ const uploadHandler = (event) => {
 
 logoFile.addEventListener('change', uploadHandler)
 
-// this uploader element is used since styling of input[type='file'] is not supported across all browsers
-// hence we have a button which on click, calls the change event of file type input.
 document.getElementById('uploader').addEventListener('click', () => {
   logoFile.click()
 })

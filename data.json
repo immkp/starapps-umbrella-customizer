@@ -1,0 +1,16 @@
+[{
+ "button":"blueButton",
+ "color":"blue",
+ "imageLink":"images/Blue%20umbrella.png",
+ "backgroundColor":"#0000ff1f"
+},{
+ "button":"pinkButton",
+ "color":"pink",
+ "imageLink":"images/Pink%20umbrella.png",
+ "backgroundColor":"#e100ff24"
+},{
+ "button":"yellowButton",
+ "color":"yellow",
+ "imageLink":"images/Yellow%20umbrella.png",
+ "backgroundColor":"#ffffe3"
+}]
